@@ -1,16 +1,8 @@
 <template>
     <div>
-        <!-- <div class="wrapper">
-            <h1 style="padding-top: 1rem; padding-bottom: 1rem"><strong>App Movies | Vue Project</strong></h1>
-            <div class="post" v-for="(movie, index) in movies" :key="index">
-                <h2 style="margin-bottom: 2rem">{{movie.title}}</h2>
-                <p style="color: #999999; margin-bottom: 2rem">Published on {{movie.releaseDate}}</p>
-                <p style="color: #999999; margin-bottom: 2rem">Genre {{movie.genre}}</p>
-                <p style="color: #999999; margin-bottom: 2rem">Director {{movie.director}}</p>
-            </div>
-        </div> -->
         <ul>
             <MovieRow v-for="(movie, index) in movies" :key="index" :movie = "movie" />
+            <MovieSearch :movies = "movies" @searchMovie="filteredMovies"/>
         </ul>
     </div>
 </template>
@@ -18,14 +10,17 @@
 <script>
 import { movies } from '../services/Movies'
 import MovieRow from '../components/MovieRow.vue'
+import MovieSearch from '../components/MovieSearch.vue'
 
 export default {
     components: {
-        MovieRow
+        MovieRow,
+        MovieSearch
     },
     data () {
         return {
-            movies: []
+            movies: [],
+            filteredMovies: []
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -36,6 +31,16 @@ export default {
                 vm.movies = response.data
             })
         })
+    },
+    methods: {
+        // filteredMovies(value) {
+        //     console.log(value)
+        // }
+        // filteredMovies: function() {
+        //     return this.movies.filter((movie) => {
+        //         return movie.title.toLowerCase().match(this.search)
+        //     });
+        // }
     }
     
 }
