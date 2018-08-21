@@ -7,9 +7,9 @@ export default class Movies {
       // definisem default url na koji ce se nastavljati http requesti
     }
 
-    // getAll() {
-    //     return axios.get('movies')
-    // }
+    getAll() {
+        return axios.get('movies')
+    }
 }
 
 export const movies = new Movies ()

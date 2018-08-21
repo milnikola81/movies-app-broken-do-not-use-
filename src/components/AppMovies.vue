@@ -21,10 +21,13 @@ export default {
             movies: []
         }
     },
-    created () {
-        movies.getAll()
-        .then((response) => {
-            this.movies = response.data
+    beforeRouteEnter (to, from, next) {
+        next(vm => {
+            // access to component instance via `vm`
+            movies.getAll()
+            .then((response) => {
+                vm.movies = response.data
+            })
         })
     }
     
