@@ -30,6 +30,10 @@
         <p v-if="selectedMoviesComputed.length > 0">You have chosen {{selectedMoviesComputed.length}} movies.</p>
         <button @click="selectAll">Select All</button>
         <button  @click="deselectAll">Deselect All</button>
+        <div class="row" style="margin: 0 auto">
+            <button @click="sortDesc">Sort by name desc</button>
+            <button @click="sortAsc">Sort by name asc</button>
+        </div>
     </div>
 </template>
 
@@ -76,6 +80,12 @@ export default {
         },
         deselectAll() {
             this.selectedMovies = []
+        },
+        sortDesc() {
+            this.filteredMovies.sort((a, b) => a.title.localeCompare(b.title));
+        },
+        sortAsc() {
+            this.filteredMovies.sort((a, b) => b.title.localeCompare(a.title));
         }
     },
     computed: {
