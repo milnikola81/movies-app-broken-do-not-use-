@@ -5,13 +5,13 @@
 </template>
 
 <script>
-import { Movies } from '../services/Movies.js'
+import { movies } from '../services/Movies.js'
 
 export default {
     props: ['movies'],
     data() {
         return {
-            search: ''
+
         }
     },
     methods: {

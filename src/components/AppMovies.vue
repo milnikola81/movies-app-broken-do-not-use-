@@ -1,9 +1,10 @@
 <template>
     <div>
         <ul>
-            <MovieRow v-for="(movie, index) in movies" :key="index" :movie = "movie" />
-            <MovieSearch :movies = "movies" @searchMovie="filteredMovies"/>
+            <MovieRow v-for="(movie, index) in filteredMovies" :key="index" :movie = "movie" />
+            <MovieSearch :movies = "movies" @searchMovie="filterMovies"/>
         </ul>
+        <!-- <button @click="showMovies">Show</button> -->
     </div>
 </template>
 
@@ -29,20 +30,15 @@ export default {
             movies.getAll()
             .then((response) => {
                 vm.movies = response.data
+                vm.filteredMovies = response.data
             })
         })
     },
     methods: {
-        // filteredMovies(value) {
-        //     console.log(value)
-        // }
-        // filteredMovies: function() {
-        //     return this.movies.filter((movie) => {
-        //         return movie.title.toLowerCase().match(this.search)
-        //     });
-        // }
+        filterMovies(value) {
+            this.filteredMovies = this.movies.filter(movie => movie.title.toLowerCase().match(value));
+        }
     }
-    
 }
 </script>
 
