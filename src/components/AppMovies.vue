@@ -1,11 +1,33 @@
 <template>
     <div>
-        <p v-if="filteredMovies.length === 0">There are no movies matching your search term</p>
-        <ul>
-            <MovieRow v-for="(movie, index) in filteredMovies" :key="index" :movie = "movie" />
-            <MovieSearch :movies = "movies" @searchMovie="filterMovies"/>
-        </ul>
-        <!-- <button @click="showMovies">Show</button> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Director
+                    </th>
+                    <th>
+                        Release Date
+                    </th>
+                    <th>
+                        Genre
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="filteredMovies.length === 0">
+                    <td colspan="5">
+                        There are no movies matching your search term
+                    </td>
+                </tr>
+                <MovieRow v-for="(movie, index) in filteredMovies" :key="index" :movie = "movie" @selectRow="selectMovies"/>
+            </tbody>
+        </table>
+        <MovieSearch :movies = "movies" @searchMovie="filterMovies"/>
+        <p v-if="selectedMovies.length > 0">You have chosen {{selectedMovies.length}} movies.</p>
     </div>
 </template>
 
@@ -22,7 +44,8 @@ export default {
     data () {
         return {
             movies: [],
-            filteredMovies: []
+            filteredMovies: [],
+            selectedMovies: []
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -38,8 +61,19 @@ export default {
     methods: {
         filterMovies(value) {
             this.filteredMovies = this.movies.filter(movie => movie.title.toLowerCase().match(value));
+        },
+        selectMovies(movie) {
+            this.selectedMovies.push(movie)
         }
     }
 }
 </script>
+
+<style scoped>
+table {
+    max-width: 60%;
+    margin: 0 auto;
+}
+</style>
+
 

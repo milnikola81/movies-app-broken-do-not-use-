@@ -6,6 +6,17 @@ import AppMovies from './components/AppMovies.vue';
 
 Vue.use(VueRouter);
 
+Vue.directive('background', {
+  componentUpdated(el, binding) {
+    if(binding.value) {
+      el.style.background = 'green'
+    }
+    // else if(!binding.value) {
+    //   el.style.background = 'none'
+    // }
+  }
+})
+
 const routes = [
   {path: '/movies', component: AppMovies},
   {path: '/', redirect: '/movies'}
