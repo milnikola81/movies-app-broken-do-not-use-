@@ -23,11 +23,13 @@
                         There are no movies matching your search term
                     </td>
                 </tr>
-                <MovieRow v-for="(movie, index) in filteredMovies" :key="index" :movie = "movie" @selectRow="selectMovies"/>
+                <MovieRow v-for="(movie, index) in filteredMovies" :key="index" :movie = "movie" :selectedMoviesComputed = "selectedMoviesComputed" @selectRow="selectMovies"/>
             </tbody>
         </table>
         <MovieSearch :movies = "movies" @searchMovie="filterMovies"/>
-        <p v-if="selectedMovies.length > 0">You have chosen {{selectedMovies.length}} movies.</p>
+        <p v-if="selectedMoviesComputed.length > 0">You have chosen {{selectedMoviesComputed.length}} movies.</p>
+        <button @click="selectAll">Select All</button>
+        <button  @click="deselectAll">Deselect All</button>
     </div>
 </template>
 
@@ -45,7 +47,8 @@ export default {
         return {
             movies: [],
             filteredMovies: [],
-            selectedMovies: []
+            selectedMovies: [],
+            // allSelected: false
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -64,6 +67,20 @@ export default {
         },
         selectMovies(movie) {
             this.selectedMovies.push(movie)
+        },
+        selectAll() {
+            this.selectedMovies = []
+            for(var i = 0; i < this.movies.length; i++) {
+                this.selectedMovies.push(this.movies[i])
+            }
+        },
+        deselectAll() {
+            this.selectedMovies = []
+        }
+    },
+    computed: {
+        selectedMoviesComputed: function() {
+            return this.selectedMovies;
         }
     }
 }

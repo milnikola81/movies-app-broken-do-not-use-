@@ -1,10 +1,11 @@
 <template>
-    <tr v-background="selected">
+    <!-- <tr v-background="selected"> -->
+    <tr>
         <td>
             {{movie.title}}
         </td>
         <td>
-                {{movie.director}}
+            {{movie.director}}
         </td>
         <td>
             {{movie.releaseDate}}
@@ -13,7 +14,7 @@
             {{movie.genre}}
         </td>
         <td>
-            <button v-if="!selected" @click="selectRow(movie)">Select</button>
+            <button v-if="!selectedMoviesComputed.includes(movie)" @click="selectRow(movie)">Select</button>
             <button v-else disabled>Select</button>
         </td>
     </tr>
@@ -21,7 +22,7 @@
 
 <script>
 export default {
-    props: ['movie'],
+    props: ['movie', 'selectedMoviesComputed'],
     data() {
         return {
             selected: false
@@ -30,7 +31,6 @@ export default {
     methods: {
         selectRow(movie) {
             this.$emit('selectRow', movie)
-            //console.log(movie)
             this.selected = true
         }
     }
