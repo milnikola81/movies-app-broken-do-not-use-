@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p v-if="filteredMovies.length === 0">There are no movies matching your search term</p>
         <ul>
             <MovieRow v-for="(movie, index) in filteredMovies" :key="index" :movie = "movie" />
             <MovieSearch :movies = "movies" @searchMovie="filterMovies"/>
