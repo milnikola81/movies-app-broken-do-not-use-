@@ -2,7 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import VueRouter from 'vue-router'
-import AppMovies from './components/AppMovies.vue';
+import AppMovies from './components/AppMovies.vue'
+import AddMovie from './components/AddMovie.vue'
 
 Vue.use(VueRouter);
 
@@ -19,7 +20,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {path: '/movies', component: AppMovies},
-  {path: '/', redirect: '/movies'}
+  {path: '/', redirect: '/movies'},
+  {path: '/add', component: AddMovie}
   // {path: '/contacts/:id', component: Contacts, name: 'contact-details'}
 ];
 
