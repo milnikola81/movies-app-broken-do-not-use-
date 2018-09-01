@@ -10,7 +10,7 @@
                         Director
                     </th>
                     <th>
-                        Release Date
+                        Release date
                     </th>
                     <th>
                         Genre

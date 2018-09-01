@@ -5,32 +5,38 @@
         <form id="addCarForm" @submit.prevent>
             <div class="form-group">
                 <label>Title</label> <br>
-                <input  class="form-control" id="title" v-model="newMovie.title" type="text" placeholder="movie title..." required>
+                <input  class="form-control" id="title" v-model="newMovie.title" type="text" placeholder="movie title...">
+                <p v-if="errors.title" style="color:red">{{errors.title[0]}}</p>
             </div>
 
             <div class="form-group">
                 <label>Director</label> <br>
-                <input  class="form-control" id="director" v-model="newMovie.director" type="text" placeholder="director..." required>
+                <input  class="form-control" id="director" v-model="newMovie.director" type="text" placeholder="director...">
+                <p v-if="errors.director" style="color:red">{{errors.director[0]}}</p>
             </div>
 
             <div class="form-group">
                 <label>Image</label> <br>
-                <input  class="form-control" id="image" v-model="newMovie.imageUrl" type="url" placeholder="image url..." required>
+                <input  class="form-control" id="image" v-model="newMovie.imageUrl" type="url" placeholder="image url...">
+                <!-- <p v-if="errors.imageUrl" style="color:red">{{errors.imageUrl[0]}}</p> -->
             </div>
 
             <div class="form-group">
                 <label>Duration</label> <br>
-                <input  class="form-control" id="duration" v-model="newMovie.duration" type="number" placeholder="duration..." required>
+                <input  class="form-control" id="duration" v-model="newMovie.duration" type="number" placeholder="duration...">
+                <p v-if="errors.duration" style="color:red">{{errors.duration[0]}}</p>
             </div>
 
             <div class="form-group">
                 <label>Release year</label> <br>
-                <input  class="form-control" id="year" v-model="newMovie.releaseDate" type="text" placeholder="release year..." required>
+                <input  class="form-control" id="year" v-model="newMovie.releaseDate" type="text" placeholder="release year...">
+                <p v-if="errors.releaseDate" style="color:red">{{errors.releaseDate[0]}}</p>
             </div>
 
             <div class="form-group">
                 <label>Genre</label> <br>
-                <input  class="form-control" id="genre" v-model="newMovie.genre" type="text" placeholder="genre..." required>
+                <input  class="form-control" id="genre" v-model="newMovie.genre" type="text" placeholder="genre...">
+                <!-- <p v-if="errors.genre" style="color:red">{{errors.genre[0]}}</p> -->
             </div>
 
             <button class="btn btn-success" @click="addMovie(newMovie)" type="submit">Add movie</button>
@@ -47,18 +53,25 @@ import { movies } from '../services/Movies'
 export default {
     data() {
         return {
-            newMovie: {}
+            newMovie: {},
+            errors: []
         }
     },
     methods: {
         addMovie(newMovie) {
+            // console.log(newMovie)
             // console.log(errors)
             movies.add(newMovie)
             .then((response) => {
+                // console.log(response.data)
                 this.$router.push('movies')
             })
             .catch(error => {
-            console.log(error.response.data.errors)
+                //console.log(error.response.data.errors)
+                this.errors = error.response.data.errors
+                if(this.errors) {
+                    //console.log(this.errors)
+                }   
             })
             // .catch(err => console.log(err))
             // checks if data is submitted, then redirects route (this way required in inputs works)
