@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="/">Movies</a>
             <router-link to="/add">Add movie</router-link>
             <router-link v-if="!isAuthenticated" to="/login">Login</router-link>
-            <button v-else @click="logout">Logout</button>
+            <span id="logoutLink" v-else @click="logout">Logout</span>
         </nav>
     </div>
 </template>
@@ -33,4 +33,17 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+#logoutLink {
+    color: #4195EA;
+    cursor: pointer;
+}
+#logoutLink:hover {
+    color: #644FAC;
+    text-decoration: underline;
+}
+
+</style>
+
 
