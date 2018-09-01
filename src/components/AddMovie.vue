@@ -18,7 +18,6 @@
             <div class="form-group">
                 <label>Image</label> <br>
                 <input  class="form-control" id="image" v-model="newMovie.imageUrl" type="url" placeholder="image url...">
-                <!-- <p v-if="errors.imageUrl" style="color:red">{{errors.imageUrl[0]}}</p> -->
             </div>
 
             <div class="form-group">
@@ -36,7 +35,6 @@
             <div class="form-group">
                 <label>Genre</label> <br>
                 <input  class="form-control" id="genre" v-model="newMovie.genre" type="text" placeholder="genre...">
-                <!-- <p v-if="errors.genre" style="color:red">{{errors.genre[0]}}</p> -->
             </div>
 
             <button class="btn btn-success" @click="addMovie(newMovie)" type="submit">Add movie</button>
@@ -59,21 +57,13 @@ export default {
     },
     methods: {
         addMovie(newMovie) {
-            // console.log(newMovie)
-            // console.log(errors)
             movies.add(newMovie)
             .then((response) => {
-                // console.log(response.data)
                 this.$router.push('movies')
             })
             .catch(error => {
-                //console.log(error.response.data.errors)
                 this.errors = error.response.data.errors
-                if(this.errors) {
-                    //console.log(this.errors)
-                }   
             })
-            // .catch(err => console.log(err))
             // checks if data is submitted, then redirects route (this way required in inputs works)
         }
     }

@@ -14,8 +14,8 @@
             {{movie.genre}}
         </td>
         <td>
-            <button v-if="!selectedMoviesComputed.includes(movie)" @click="selectRow(movie)">Select</button>
-            <button v-else disabled>Select</button>
+            <button type="button" class="btn btn-success" v-if="!selectedMoviesComputed.includes(movie)" @click="selectRow(movie)">Select</button>
+            <button type="button" class="btn btn-success" v-else disabled>Select</button>
         </td>
     </tr>
 </template>

@@ -19,7 +19,6 @@ export default class Movies {
         if(!movie.imageUrl) {
             movie.imageUrl = 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png'
         }
-        // console.log(movie.genre)
         return axios.post('movies', movie)
     }
     // getMovie(id) {

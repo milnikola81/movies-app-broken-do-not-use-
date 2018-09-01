@@ -1,5 +1,8 @@
 <template>
     <div>
+        <br>
+        <h1>Complete movie list</h1>
+        <br>
         <table class="table">
             <thead>
                 <tr>
@@ -15,6 +18,9 @@
                     <th>
                         Genre
                     </th>
+                    <th>
+                        
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -26,14 +32,16 @@
                 <MovieRow v-for="(movie, index) in filteredMovies" :key="index" :movie = "movie" :selectedMoviesComputed = "selectedMoviesComputed" @selectRow="selectMovies"/>
             </tbody>
         </table>
+        <br>
         <MovieSearch :movies = "movies" @searchMovie="filterMovies"/>
         <p v-if="selectedMoviesComputed.length > 0">You have chosen {{selectedMoviesComputed.length}} movies.</p>
-        <button @click="selectAll">Select All</button>
-        <button  @click="deselectAll">Deselect All</button>
-        <div class="row" style="margin: 0 auto">
-            <button @click="sortDesc">Sort by name desc</button>
-            <button @click="sortAsc">Sort by name asc</button>
-        </div>
+        <br>
+        <button type="button" class="btn btn-primary" @click="selectAll">Select All</button>
+        <button type="button" class="btn btn-danger" @click="deselectAll">Deselect All</button>
+        <br><br>
+        <button type="button" class="btn btn-light" @click="sortDesc">Sort by name desc</button>
+        <button type="button" class="btn btn-dark" @click="sortAsc">Sort by name asc</button>
+        <br><br>
     </div>
 </template>
 
@@ -98,8 +106,11 @@ export default {
 
 <style scoped>
 table {
-    max-width: 60%;
+    max-width: 80%;
     margin: 0 auto;
+}
+button {
+    margin-right: 2rem;
 }
 </style>
 

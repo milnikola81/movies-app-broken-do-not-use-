@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" @input="searchMovie" placeholder="search movies..." />
+        <input class="form-control" type="text" @input="searchMovie" placeholder="search movies..." />
     </div>
 </template>
 
@@ -23,4 +23,12 @@ export default {
     
 }
 </script>
+
+<style scoped>
+input {
+    max-width: 40%;
+    margin: 0 auto;
+}
+</style>
+
 
