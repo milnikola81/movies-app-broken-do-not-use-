@@ -3,7 +3,7 @@ import axios from 'axios'
 export default class AuthService {
 
     constructor() {
-        axios.defaults.baseURL = 'http//localhost:8000/api/'
+        axios.defaults.baseURL = 'http://localhost:8000/api/'
         this.setAuthorizationHeader()
     }
 
@@ -13,10 +13,8 @@ export default class AuthService {
     }
 
     login(email, password) {
-        return axios.post('auth/login', {
-        email, password
-        }).then((response) => {
-        // console.log(response.data.access_token)
+        return axios.post('auth/login', { email, password })
+        .then((response) => {
         window.localStorage.setItem('token', response.data.access_token)
         this.setAuthorizationHeader()
         })
@@ -28,7 +26,7 @@ export default class AuthService {
     }
 
     isAuthenticated() {
-        return localStorage.getItem('token')
+        return !!localStorage.getItem('token')
     }
 }
 
