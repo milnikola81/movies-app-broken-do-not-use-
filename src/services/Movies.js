@@ -21,9 +21,10 @@ export default class Movies {
         }
         return axios.post('movies', movie)
     }
-    // getMovie(id) {
-    //     return axios.get(`movies/${id}`)
-    // }
+    get(id) {
+        // console.log(id)
+        return axios.get(`movies/${id}`)
+    }
     // deleteMovie(movie) {
     //     return axios.delete(`movies/${movie.id}`)
     // }

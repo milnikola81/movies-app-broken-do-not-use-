@@ -1,6 +1,6 @@
 <template>
     <!-- <tr v-background="selected"> -->
-    <tr>
+    <tr @click="showMovie(movie)">
         <td>
             {{movie.title}}
         </td>
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { movies } from '../services/Movies'
+
 export default {
     props: ['movie', 'selectedMoviesComputed'],
     data() {
@@ -32,8 +34,20 @@ export default {
         selectRow(movie) {
             this.$emit('selectRow', movie)
             this.selected = true
+        },
+        showMovie(movie) {
+            movies.get(movie.id)
+            .then((response) => {
+                this.$router.push({ name: 'single-movie', params: { id: movie.id }})
+            })
         }
     }
 }
 </script>
+
+<style scoped>
+tr:hover {
+    background: #DDE1E5;
+}
+</style>
 
