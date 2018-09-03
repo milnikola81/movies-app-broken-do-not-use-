@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { authService } from '../services/Auth'
 import { movies } from '../services/Movies'
 
 export default {
@@ -52,10 +53,15 @@ export default {
     beforeRouteEnter (to, from, next) {
         next(vm => {
             // access to component instance via `vm`
-            movies.get(vm.$route.params.id)
-            .then((response) => {
-                vm.movie = response.data
-            })
+            if(authService.isAuthenticated()) {
+                movies.get(vm.$route.params.id)
+                .then((response) => {
+                    vm.movie = response.data
+                })
+            }
+            else {
+                vm.$router.push('../login')
+            }
         })
     }
 
