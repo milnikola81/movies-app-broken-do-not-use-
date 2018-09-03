@@ -19,6 +19,9 @@
                         Genre
                     </th>
                     <th>
+                        Image
+                    </th>
+                    <th>
                         
                     </th>
                 </tr>

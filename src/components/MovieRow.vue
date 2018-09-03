@@ -14,6 +14,9 @@
             {{movie.genre}}
         </td>
         <td>
+            <img v-bind:src=movie.imageUrl height="90" width="120"/>
+        </td>
+        <td>
             <button type="button" class="btn btn-success" v-if="!selectedMoviesComputed.includes(movie)" v-on:click.stop @click="selectRow(movie)">Select</button>
             <button type="button" class="btn btn-success" v-else disabled>Select</button>
         </td>

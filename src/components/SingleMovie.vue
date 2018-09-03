@@ -18,6 +18,9 @@
                     <th>
                         Genre
                     </th>
+                    <th>
+                        Image
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +36,9 @@
                     </td>
                     <td>
                         {{movie.genre}}
+                    </td>
+                    <td>
+                        <img v-bind:src=movie.imageUrl height="180" width="240"/>
                     </td>
                 </tr>
             </tbody>

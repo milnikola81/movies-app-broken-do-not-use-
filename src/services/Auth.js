@@ -9,6 +9,7 @@ export default class AuthService {
 
     logout() {
         localStorage.removeItem('token')
+	return axios.post('auth/logout')
         // delete axios.defaults.headers.common['Authorization']
     }
 

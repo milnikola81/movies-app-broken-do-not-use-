@@ -17,7 +17,7 @@ export default class Movies {
             movie.genre = 'Unknown'
         }
         if(!movie.imageUrl) {
-            movie.imageUrl = 'https://increasify.com.au/wp-content/uploads/2016/08/default-image.png'
+            movie.imageUrl = 'https://canadatwoway.com/wp-content/uploads/2017/11/No_Image_Available.jpg'
         }
         return axios.post('movies', movie)
     }
