@@ -52,8 +52,12 @@ export default {
     },
     methods: {
         addUser() {
-            if(this.newUser.password && this.newUser.confirmPassword && this.newUser.password !== this.newUser.confirmPassword) {
+            if  (this.newUser.password && 
+                this.newUser.confirmPassword && 
+                this.newUser.password !== this.newUser.confirmPassword) 
+                {
                 this.passwordError = 'Your passwords do not match'
+                // this.errors.confirmPassword[0] = ''
             }
             else {
                 users.add(this.newUser)
@@ -61,7 +65,9 @@ export default {
                     this.$router.push('login')
                 })
                 .catch(error => {
+                    // console.log(error.response.data.errors)
                     this.errors = error.response.data.errors
+                    // console.log(this.errors.confirmPassword[0])
                 })
                 this.passwordError = ''
             }

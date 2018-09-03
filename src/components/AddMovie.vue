@@ -64,6 +64,9 @@ export default {
             })
             .catch(error => {
                 this.errors = error.response.data.errors
+                console.log(error.response.data.errors)
+                newMovie.genre = ''
+                newMovie.imageUrl = ''
             })
             // checks if data is submitted, then redirects route (this way required in inputs works)
         }
