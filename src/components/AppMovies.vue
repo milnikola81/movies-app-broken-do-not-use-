@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { authService } from '../services/Auth'
 import { movies } from '../services/Movies'
 import MovieRow from '../components/MovieRow.vue'
 import MovieSearch from '../components/MovieSearch.vue'
@@ -66,11 +67,16 @@ export default {
     beforeRouteEnter (to, from, next) {
         next(vm => {
             // access to component instance via `vm`
-            movies.getAll()
-            .then((response) => {
-                vm.movies = response.data
-                vm.filteredMovies = response.data
-            })
+            if(authService.isAuthenticated()) {
+                movies.getAll()
+                .then((response) => {
+                    vm.movies = response.data
+                    vm.filteredMovies = response.data
+                })
+            }
+            else {
+                vm.$router.push('login')
+            }
         })
     },
     methods: {

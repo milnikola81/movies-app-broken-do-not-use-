@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { authService } from '../services/Auth'
 import { movies } from '../services/Movies'
 
 export default {
@@ -66,7 +67,18 @@ export default {
             })
             // checks if data is submitted, then redirects route (this way required in inputs works)
         }
-    }
+    },
+    beforeRouteEnter (to, from, next) {
+        next(vm => {
+            // access to component instance via `vm`
+            if(!authService.isAuthenticated()) {
+                vm.$router.push('login')
+            }
+            else {
+                next()
+            }
+        })
+    },
 }
 </script>
 

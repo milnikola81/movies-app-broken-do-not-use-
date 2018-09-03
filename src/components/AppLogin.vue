@@ -47,7 +47,18 @@ export default {
                 this.error = error.response.data.error
             })
         }
-    }
+    },
+    beforeRouteEnter (to, from, next) {
+        next(vm => {
+            // access to component instance via `vm`
+            if(authService.isAuthenticated()) {
+                vm.$router.push('movies')
+            }
+            else {
+                next()
+            }
+        })
+    },
 }
 </script>
 
